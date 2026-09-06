@@ -1,0 +1,44 @@
+[project]
+name = "aws-tower"
+version = "1.0.0"
+description = "AWS IAM Security Tower - Real-time threat detection, UEBA, and security monitoring"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "boto3>=1.34.0",
+    "botocore>=1.34.0",
+    "typer>=0.12.0",
+    "pydantic>=2.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+aws-tower = "aws_tower.main:main_entry"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["aws_tower*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra -q"
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:botocore.*",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501"]  # line length handled by formatter
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]  # asserts are fine in tests
+"aws_tower/tower/cli.py" = ["B008"]  # Typer options use function defaults by design

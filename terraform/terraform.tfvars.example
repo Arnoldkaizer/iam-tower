@@ -1,0 +1,10 @@
+# Replace this with the public IP/CIDR AWS sees for approved traffic.
+# Do not use a private LAN address such as 192.168.35.31.
+allowed_source_cidrs = ["203.0.113.10/32"]
+
+aws_region  = "us-east-1"
+environment = "production"
+name_prefix = "iam-tower"
+
+# Optional CloudTrail alert subscription.
+alert_email = ""
