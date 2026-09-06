@@ -27,3 +27,7 @@ terraform/crash.log
 .idea/
 .DS_Store
 Thumbs.db
+
+# Local workspace notes
+AGENTS.md
+PROGRESS.md
